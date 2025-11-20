@@ -72,8 +72,8 @@ const ExpenseList = () => {
                                 <input type="number" value={editAmount} onChange={(e) => setEditAmount(e.target.value)} />
                                 <input type="text" value={editNote} onChange={(e) => setEditNote(e.target.value)} placeholder="Optional Note" />
                                 <div className="list-btns">
-                                    <button onClick={() => handleSave(exp.id)}><FontAwesomeIcon icon={faSave} /></button>
-                                    <button onClick={() => setEditingId(null)}><FontAwesomeIcon icon={faCircleXmark} /></button>
+                                    <button onClick={() => handleSave(exp.id)}><FontAwesomeIcon icon={faSave} className="icons" /></button>
+                                    <button onClick={() => setEditingId(null)}><FontAwesomeIcon icon={faCircleXmark} className="icons" /></button>
                                 </div>
                             </div>
                         ) : (
@@ -83,8 +83,8 @@ const ExpenseList = () => {
                                 <div className="expense-field"><span>€{exp.amount}</span></div>
                                 <div className="expense-field"><span>{exp.note || ""}</span></div>
                                 <div className="list-btns">
-                                    <button onClick={() => handleEdit(exp)}><FontAwesomeIcon icon={faEdit} /></button>
-                                    <button onClick={() => deleteExpense(exp.id)}><FontAwesomeIcon icon={faTrash} /></button>
+                                    <button onClick={() => handleEdit(exp)}><FontAwesomeIcon icon={faEdit} className="icons" /></button>
+                                    <button onClick={() => deleteExpense(exp.id)}><FontAwesomeIcon icon={faTrash} className="icons" /></button>
                                 </div>
                             </>
                         )}
