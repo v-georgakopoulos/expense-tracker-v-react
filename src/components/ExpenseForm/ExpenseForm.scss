@@ -53,6 +53,8 @@
         cursor: pointer;
         background-color: gray;
         transition: background-color 0.3s;
+        position: relative;
+        top: 8px;
 
         &:hover {
             background-color: lighten(gray, 10%);
