@@ -1,47 +1,25 @@
-import { createContext, useState, } from "react";
+import { createContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
 import useLocalStorage from "../hooks/useLocalstorage"
 
 export const ExpenseContext = createContext();
 
 export const ExpenseProvider = ({ children }) => {
 
-    const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
+    const categories = ["Bills", "Food", "Transport", "Fun", "Health"];
 
-    const categories = [
-        "Bills",
-        "Food",
-        "Transport",
-        "Fun",
-        "Health"
-    ];
+    const today = new Date();
+    const [selectedDate, setSelectedDate] = useState(today.toISOString().split("T")[0]); // YYYY-MM-DD
 
-    const now = new Date();
-    const years = Array.from({ length: 6 }, (_, index) => now.getFullYear() + index);
-    const [selectedMonth, setSelectedMonth] = useState(now.toLocaleString("default", { month: "long" }));
-    const [selectedYear, setSelectedYear] = useState(now.getFullYear());
-
+    // Key στο localStorage με βάση τον μήνα
+    const storageKey = selectedDate.slice(0, 7); // "YYYY-MM"
     const {
         storedValue: expenses,
         addItem,
         removeItem,
         updateItem,
-    } = useLocalStorage(`${selectedMonth}_${selectedYear}`, []);
-    
+    } = useLocalStorage(storageKey, []);
+
     // Add new Expense
     const addExpense = (category, amount, note) => {
         if (!category || isNaN(amount) || amount <= 0) return;
@@ -51,7 +29,7 @@ export const ExpenseProvider = ({ children }) => {
             category,
             amount: Number(amount),
             note,
-            date: new Date().toLocaleDateString()
+            date: selectedDate
         }
 
         addItem(newExpense);
@@ -61,33 +39,35 @@ export const ExpenseProvider = ({ children }) => {
     const deleteExpense = (id) => removeItem(id);
 
     // Edit Expense
-    const editExpense = (id,updatedData) => updateItem(id, updatedData)
+    const editExpense = (id, updatedData) => updateItem(id, updatedData);
+
+    // Filtered expenses for the selected month
+    const filteredExpenses = expenses.filter(exp =>
+        exp.date.startsWith(selectedDate.slice(0, 7))
+    );
 
     // Totals for chart
     const totalsByCategory = categories.map(cat =>
-        expenses
-        .filter(exp => exp.category === cat)
-        .reduce((sum,exp) => sum + exp.amount, 0)
-    )
+        filteredExpenses
+            .filter(exp => exp.category === cat)
+            .reduce((sum, exp) => sum + exp.amount, 0)
+    );
 
     // Total Monthly Expenses
-    const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+    const totalExpenses = filteredExpenses.reduce((sum, exp) => sum + exp.amount, 0);
 
     const value = {
-        months,
         categories,
-        years,
-        selectedMonth,
-        setSelectedMonth,
-        selectedYear,
-        setSelectedYear,
+        selectedDate,
+        setSelectedDate,
         addExpense,
-        expenses,
+        expenses: filteredExpenses,
         totalsByCategory,
         totalExpenses,
         deleteExpense,
         editExpense
     }
+
     return (
         <ExpenseContext.Provider value={value}>
             {children}

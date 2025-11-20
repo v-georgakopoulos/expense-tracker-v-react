@@ -1,5 +1,4 @@
 .expense-list-container {
-
     *,
     input,
     select {
@@ -17,6 +16,9 @@
 
     .expense-search {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
         input {
             width: 100%;
@@ -83,6 +85,7 @@
 
         .list-btns {
             display: flex;
+            margin-left: auto;
             gap: 5px;
 
             .icons {
@@ -98,9 +101,10 @@
 @media (max-width:699px) {
     .expense-list-container {
         width: calc(100% - 20px);
+        position: relative;
 
         ul {
-            height: 180px;
+            height: 200px;
             .expense-item {
                 font-size: 0.7rem;
                 gap: 5px;
@@ -129,7 +133,6 @@
 
             .list-btns {
                 display: flex;
-                margin-left: auto;
 
                 .icons {
                     font-size: 0.9rem;

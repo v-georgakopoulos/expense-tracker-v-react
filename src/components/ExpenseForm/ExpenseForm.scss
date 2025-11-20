@@ -60,6 +60,10 @@
             background-color: lighten(gray, 10%);
         }
 
+        &.adding {
+            background-color: green;
+        }
+        
     }
 }
 
