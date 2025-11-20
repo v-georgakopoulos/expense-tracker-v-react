@@ -1,0 +1,18 @@
+.expense-chart {
+  width: 100%;
+  max-width: 450px;   
+  margin: 0 auto;    
+  padding: 10px;
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 699px) {
+  .expense-chart {
+    max-width: 355px; 
+    padding: 0;
+  }
+}

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Share+Tech&display=swap');
+html {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: rgb(18, 18, 18);
+    color: whitesmoke;
+    font-family: 'Montserrat',sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    list-style: none;
+}
