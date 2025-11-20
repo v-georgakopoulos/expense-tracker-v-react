@@ -34,7 +34,6 @@ const ExpenseForm = () => {
     return (
         <form className="expense-form" onSubmit={handleSubmit}>
             <div className="form-inputs">
-
                 <div className="input-group">
                     <label>Date</label>
                     <input
@@ -44,7 +43,6 @@ const ExpenseForm = () => {
                         required
                     />
                 </div>
-
                 <div className="input-group">
                     <label>Category</label>
                     <select
@@ -56,7 +54,6 @@ const ExpenseForm = () => {
                         ))}
                     </select>
                 </div>
-
                 <div className="input-group">
                     <label>Amount</label>
                     <input
@@ -68,7 +65,6 @@ const ExpenseForm = () => {
                         required
                     />
                 </div>
-
                 <div className="input-group">
                     <label>Note</label>
                     <input
@@ -79,7 +75,6 @@ const ExpenseForm = () => {
                     />
                 </div>
             </div>
-
             <button className={isAdding ? "adding" : ""} type="submit">{ isAdding ? "Adding..." : "Add Expense" }</button>
         </form>
     )

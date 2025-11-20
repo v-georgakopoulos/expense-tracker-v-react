@@ -74,12 +74,13 @@
             flex-direction: column;
 
             .input-group {
-
+                
                 label{
                     font-size: 0.9rem;
                 }
                 select,input {
                     height: 28px;
+                    width: 100%;
                 }
             }
         }
